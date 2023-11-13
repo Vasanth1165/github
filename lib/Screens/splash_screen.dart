@@ -14,7 +14,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Timer(const Duration(seconds: 2), () {
       Navigator.push(context, MaterialPageRoute(builder:(context) => const SearchPage(),));
@@ -25,7 +24,9 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Image(image: AssetImage("assets/logo.png"),width: 100,height: 100,),
+        child: Hero(
+          tag: "app_logo",
+          child: Image(image: AssetImage("assets/logo.png"),width: 100,height: 100,)),
       ),
     );
   }
