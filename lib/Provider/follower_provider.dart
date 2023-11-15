@@ -4,12 +4,11 @@ import 'dart:io';
 
 
 import 'package:flutter/material.dart';
-import 'package:github/Models/followers.dart';
 import 'package:github/Widgets/snakbarwidget.dart';
 import 'package:http/http.dart' as http;
 class FollowersProvider extends ChangeNotifier{
-  Followers _followers=Followers();
-  Followers get followers=> _followers;
+  List<dynamic> _followers=[];
+  List<dynamic> get followers=> _followers;
   bool _isloading=false;
   bool get isloading=> _isloading;
 
@@ -20,10 +19,10 @@ class FollowersProvider extends ChangeNotifier{
 
   Future getFollowersData(BuildContext context,String userid) async{
     setLoading(true);
-    await http.get(Uri.parse("https://api.github.com/users/$userid"))
+    await http.get(Uri.parse("https://api.github.com/users/$userid/followers"))
     .then((res){
       if(res.statusCode==200){
-        _followers = Followers.fromJson(jsonDecode(res.body));
+        _followers = jsonDecode(res.body);
         _isloading=false;
         notifyListeners();
         // Navigator.push(context, MaterialPageRoute(builder: (context)=> const DashBoard()));

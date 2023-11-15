@@ -7,7 +7,7 @@ class Utils{
       children: [
         const Icon(Icons.error,color: Colors.white,),
         const SizedBox(width: 5,),
-        Text(mess,style: const TextStyle(color: Colors.white,fontSize: 18),),
+        Text(mess,style: const TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),),
       ],
     ),
     duration: const Duration(seconds: 2),

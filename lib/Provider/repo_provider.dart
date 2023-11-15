@@ -7,10 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:github/Widgets/snakbarwidget.dart';
 import 'package:http/http.dart' as http;
 
-import '../Models/repo.dart';
 class RepoProvider extends ChangeNotifier{
-  Repo _repo=Repo();
-  Repo get repo=> _repo;
+  List<dynamic> _repo=[];
+  List<dynamic> get repo=> _repo;
   bool _isloading=false;
   bool get isloading=> _isloading;
 
@@ -24,7 +23,7 @@ class RepoProvider extends ChangeNotifier{
     await http.get(Uri.parse("https://api.github.com/users/$userid/repos"))
     .then((res){
       if(res.statusCode==200){
-        _repo = Repo.fromJson(jsonDecode(res.body));
+        _repo = jsonDecode(res.body);
         _isloading=false;
         notifyListeners();
       }else{
