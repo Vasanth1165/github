@@ -38,27 +38,28 @@ class _SearchPageState extends State<SearchPage> {
             const SizedBox(height: 10,),
             const Text("GitHub",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),),
             const SizedBox(height: 20,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black,width: 3),
-                  borderRadius: BorderRadius.circular(30)
-                ),
-                child: TextField(
-                  controller: userID,
-                  cursorColor: Colors.black,
-                  decoration: const InputDecoration(
-                    hintText: "Enter UserID",
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20)
-                  ),
-                  style: const TextStyle(
-                    color: Colors.black
-                  ),
-                ),
-              
+            Container(
+               constraints: const BoxConstraints(
+                  minWidth: 200,
+                  maxWidth: 300
+                ) ,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black,width: 3),
+                borderRadius: BorderRadius.circular(30)
               ),
+              child: TextField(
+                controller: userID,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  hintText: "Enter UserID",
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20)
+                ),
+                style: const TextStyle(
+                  color: Colors.black
+                ),
+              ),
+            
             ),
             const SizedBox(
               height: 20,
@@ -76,6 +77,7 @@ class _SearchPageState extends State<SearchPage> {
                 },
                 child: Container(
                   height: 50,
+                 
                   decoration: const BoxDecoration(
                     color: Colors.black,
                     borderRadius: BorderRadius.all(Radius.circular(30))

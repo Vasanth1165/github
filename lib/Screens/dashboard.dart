@@ -19,23 +19,12 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMixin{
 
-  late Animation animation;
-  late AnimationController animationController;
+  
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    animationController=AnimationController(
-      duration: const Duration(
-        seconds: 2
-      ),
-      vsync: this);
-    
-    animation =IntTween(begin: 0,end: 0).animate(CurvedAnimation(parent: animationController, curve: Curves.bounceInOut));
-
-    animationController.forward();
-
   }
   @override
   Widget build(BuildContext context) {
@@ -100,7 +89,7 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
                       },
                       child: Column(
                         children: [
-                          Text(value.userData.followers.toString(),style: const TextStyle(
+                          Text(  value.userData.followers.toString(),style: const TextStyle(
                             fontSize: 18,fontWeight: FontWeight.bold
                           ),),
                           const SizedBox(height: 10,),
@@ -117,7 +106,7 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
                     ),
                    Column(
                       children: [
-                        Text("${value.userData.following}",style: const TextStyle(
+                        Text(value.userData.following.toString(),style: const TextStyle(
                           fontSize: 18,fontWeight: FontWeight.bold
                         ),),
                         const SizedBox(
