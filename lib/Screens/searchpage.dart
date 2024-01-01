@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:github/Provider/theme_change_provider.dart';
 import 'package:github/Provider/user_data_provider.dart';
 import 'package:github/Screens/dashboard.dart';
 import 'package:github/Widgets/loderwidget.dart';
@@ -26,6 +27,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     final user=Provider.of<UserDataProvider>(context);
+    final theme=Provider.of<ThemeChanger>(context);
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -77,7 +79,6 @@ class _SearchPageState extends State<SearchPage> {
                 },
                 child: Container(
                   height: 50,
-                 
                   decoration: const BoxDecoration(
                     color: Colors.black,
                     borderRadius: BorderRadius.all(Radius.circular(30))
@@ -94,9 +95,20 @@ class _SearchPageState extends State<SearchPage> {
             Visibility(
               visible: user.isloading,
               child: const MyLoder())
-    
           ],
         ),
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniStartDocked,
+        floatingActionButton: theme.isDark ? GestureDetector(
+          onTap: (){
+            theme.setTheme(ThemeMode.light);
+          },
+          child: const Icon(Icons.light_mode)) 
+          : GestureDetector(
+            onTap: (){
+              theme.setTheme(ThemeMode.dark);
+            },
+            child: const Icon(Icons.dark_mode))
       ),
     );
   }

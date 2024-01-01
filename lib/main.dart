@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:github/Provider/follower_provider.dart';
 import 'package:github/Provider/repo_provider.dart';
+import 'package:github/Provider/theme_change_provider.dart';
 import 'package:github/Provider/user_data_provider.dart';
 import 'package:github/Screens/splash_screen.dart';
 import 'package:provider/provider.dart';
@@ -22,12 +23,27 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(providers: [
       ChangeNotifierProvider(create:(context) => UserDataProvider()),
       ChangeNotifierProvider(create: (context) => RepoProvider()),
-      ChangeNotifierProvider(create: (context)=> FollowersProvider())
+      ChangeNotifierProvider(create: (context)=> FollowersProvider()),
+      ChangeNotifierProvider(create: (_)=> ThemeChanger())
     ],
-    child:  const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
-    ),
+    child: Builder(builder:(context) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        themeMode: Provider.of<ThemeChanger>(context).themeMode,
+        theme: ThemeData(
+          brightness: Brightness.light,
+          primaryColor: Colors.white
+        ),
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          primaryColor: Colors.black,
+          iconTheme: const IconThemeData(
+            color: Colors.white
+          ),
+        ),
+        home: const SplashScreen(),
+      );
+    },)
     );
   }
 }
